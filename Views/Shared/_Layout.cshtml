@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using EpInForno.Models
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    <title>@ViewBag.Title - EpInForno</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -12,7 +13,7 @@
 
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("Nome dell'applicazione", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("EpInForno", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,13 +24,36 @@
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                var email = User.Identity.Name;
+                Console.WriteLine("Email utente autenticato: " + email); 
+
+                var dbContext = new ApplicationDbContext();
+                var utente = dbContext.Utenti.FirstOrDefault(u => u.Email == email);
+
+                Console.WriteLine("Nome utente recuperato: " + utente?.Nome); 
+
+                <p style="color: antiquewhite">Benvenuto, @utente?.Nome!</p>
+                <form action="@Url.Action("Logout", "Account")" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+
+            }
+            else
+            {
+                <form action="@Url.Action("Login", "Account")" method="get">
+                    <button type="submit">Login</button>
+                </form>
+            }
+
         </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - EpInForno</p>
         </footer>
     </div>
 
