@@ -1,17 +1,18 @@
-﻿using EpInForno.Models;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using EpInForno.Models;
 
 namespace EpInForno.Controllers
 {
-    public class AccountController : Controller
+    public class AmministratoreController : Controller
     {
         private ApplicationDbContext dbContext;
 
-        public AccountController()
+        public AmministratoreController()
         {
             dbContext = new ApplicationDbContext();
         }
@@ -26,17 +27,17 @@ namespace EpInForno.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = dbContext.Utenti.FirstOrDefault(u => u.Email == model.Email && u.PasswordUtente == model.Password);
+                var amministratore = dbContext.Amministratori.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
 
-                if (user != null)
+                if (amministratore != null)
                 {
                     var ticket = new FormsAuthenticationTicket(
                         1,
-                        user.Email,
+                        amministratore.Email,
                         DateTime.Now,
-                        DateTime.Now.AddMinutes(30), 
+                        DateTime.Now.AddMinutes(30),
                         false,
-                        user.Nome + " " + user.Cognome
+                        amministratore.Nome + " " + amministratore.Cognome
                     );
 
                     string encryptedTicket = FormsAuthentication.Encrypt(ticket);
@@ -52,13 +53,6 @@ namespace EpInForno.Controllers
             }
 
             return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Logout()
-        {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Login");
         }
     }
 }

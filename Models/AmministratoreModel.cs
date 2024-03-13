@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace EpInForno.Models
 {
     public class AmministratoreModel
     {
-        public int Id { get; set; }
+        [Key]
+        public int IdAmministratore { get; set; }
+
+        [Required]
         public string Nome { get; set; }
+
+        [Required]
         public string Cognome { get; set; }
-        public string Matricola { get; set; }
-        public string Password { get; set; }
+
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
+
+        [Required]
+        public string Password { get; set; }
     }
 }

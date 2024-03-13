@@ -7,13 +7,13 @@ namespace EpInForno.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AggiuntaAmministratoreModel : IMigrationMetadata
+    public sealed partial class CreateAmministratoriTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AggiuntaAmministratoreModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateAmministratoriTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202403121610144_AggiuntaAmministratoreModel"; }
+            get { return "202403131640379_CreateAmministratoriTable"; }
         }
         
         string IMigrationMetadata.Source

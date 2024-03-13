@@ -163,6 +163,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AmministratoreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrazioneController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -173,9 +174,9 @@
     <Compile Include="Migrations\202403121558089_CreazioneDB.Designer.cs">
       <DependentUpon>202403121558089_CreazioneDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202403121610144_AggiuntaAmministratoreModel.cs" />
-    <Compile Include="Migrations\202403121610144_AggiuntaAmministratoreModel.Designer.cs">
-      <DependentUpon>202403121610144_AggiuntaAmministratoreModel.cs</DependentUpon>
+    <Compile Include="Migrations\202403131640379_CreateAmministratoriTable.cs" />
+    <Compile Include="Migrations\202403131640379_CreateAmministratoriTable.Designer.cs">
+      <DependentUpon>202403131640379_CreateAmministratoriTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AmministratoreModel.cs" />
@@ -255,6 +256,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Registrazione\Registrazione.cshtml" />
+    <Content Include="Views\Amministratore\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -334,8 +336,8 @@
     <EmbeddedResource Include="Migrations\202403121558089_CreazioneDB.resx">
       <DependentUpon>202403121558089_CreazioneDB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403121610144_AggiuntaAmministratoreModel.resx">
-      <DependentUpon>202403121610144_AggiuntaAmministratoreModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202403131640379_CreateAmministratoriTable.resx">
+      <DependentUpon>202403131640379_CreateAmministratoriTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

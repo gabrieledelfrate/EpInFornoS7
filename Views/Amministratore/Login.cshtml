@@ -1,12 +1,12 @@
-﻿@model EpInForno.Models.LoginViewModel
+﻿@model EpInForno.Models.AmministratoreModel
 
 @{
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+<h2>Login Amministratori</h2>
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+@using (Html.BeginForm("Login", "Amministratore", FormMethod.Post))
 {
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -24,11 +24,3 @@
 
     <button type="submit" class="btn btn-primary">Login</button>
 }
-
-<p>
-    @Html.ActionLink("Registra un nuovo account", "Registrazione", "Registrazione")
-</p>
-
-<p>
-    @Html.ActionLink("Accedi come amministratore", "Login", "Amministratore")
-</p>

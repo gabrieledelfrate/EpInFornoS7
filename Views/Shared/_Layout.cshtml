@@ -27,19 +27,20 @@
             @if (User.Identity.IsAuthenticated)
             {
                 var email = User.Identity.Name;
-                Console.WriteLine("Email utente autenticato: " + email); 
+                System.Diagnostics.Debug.WriteLine("Email utente autenticato: " + email);
 
                 var dbContext = new ApplicationDbContext();
                 var utente = dbContext.Utenti.FirstOrDefault(u => u.Email == email);
 
-                Console.WriteLine("Nome utente recuperato: " + utente?.Nome); 
+                System.Diagnostics.Debug.WriteLine("Nome utente recuperato: " + utente?.Nome);
 
-                <p style="color: antiquewhite">Benvenuto, @utente?.Nome!</p>
+                <p style="color: antiquewhite">Benvenuto, @((utente != null) ? utente.Nome : "Nome non disponibile")!</p>
                 <form action="@Url.Action("Logout", "Account")" method="post">
                     <button type="submit">Logout</button>
                 </form>
-
             }
+
+
             else
             {
                 <form action="@Url.Action("Login", "Account")" method="get">

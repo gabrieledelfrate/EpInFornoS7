@@ -17,6 +17,7 @@ namespace EpInForno.Models
         public DbSet<UtenteModel> Utenti { get; set; }
         public DbSet<OrdineModel> Ordini { get; set; }
         public DbSet<DettaglioOrdineModel> DettagliOrdini { get; set; }
+        public DbSet<AmministratoreModel> Amministratori { get; set; }
 
     }
 }
