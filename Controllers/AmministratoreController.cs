@@ -44,7 +44,7 @@ namespace EpInForno.Controllers
                     HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                     Response.Cookies.Add(authCookie);
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ListaOrdini", "Amministratore");
                 }
                 else
                 {
