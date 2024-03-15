@@ -55,18 +55,23 @@ namespace EpInForno.Controllers
             List<DettaglioOrdineModel> carrello = Session["Carrello"] as List<DettaglioOrdineModel>;
             if (carrello != null)
             {
-                var dettaglioOrdine = carrello.FirstOrDefault(d => d.Id == id);
-                if (dettaglioOrdine != null)
+                int dettaglioOrdineId;
+                if (int.TryParse(id, out dettaglioOrdineId))
                 {
-                    dettaglioOrdine.Quantita = quantita;
-                    dettaglioOrdine.PrezzoTotale = dettaglioOrdine.ArticoloModelPrezzo * quantita;
+                    var dettaglioOrdine = carrello.FirstOrDefault(d => d.Id == dettaglioOrdineId);
+                    if (dettaglioOrdine != null)
+                    {
+                        dettaglioOrdine.Quantita = quantita;
+                        dettaglioOrdine.PrezzoTotale = dettaglioOrdine.ArticoloModelPrezzo * quantita;
 
-                    Session["Carrello"] = carrello;
+                        Session["Carrello"] = carrello;
+                    }
                 }
             }
 
             return RedirectToAction("Index");
         }
+
 
         private string GetIndirizzoUtenteLoggato()
         {
@@ -107,7 +112,7 @@ namespace EpInForno.Controllers
                 dettaglio.UtenteModelId = int.Parse(userId);
 
 
-                dettaglio.Id = Guid.NewGuid().ToString();
+                
 
                 dettaglio.DettaglioOrdineId = nuovoOrdineId;
 
@@ -132,7 +137,7 @@ namespace EpInForno.Controllers
             List<DettaglioOrdineModel> carrello = Session["Carrello"] as List<DettaglioOrdineModel>;
             if (carrello != null)
             {
-                var dettaglioOrdine = carrello.FirstOrDefault(d => d.Id == id);
+                var dettaglioOrdine = carrello.FirstOrDefault(d => d.Id.ToString() == id);
                 if (dettaglioOrdine != null)
                 {
                     carrello.Remove(dettaglioOrdine);
@@ -142,5 +147,8 @@ namespace EpInForno.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+
     }
 }

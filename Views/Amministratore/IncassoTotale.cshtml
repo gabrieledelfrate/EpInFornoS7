@@ -1,8 +1,15 @@
-﻿@model decimal
+﻿@model decimal?
 
 @{
     ViewBag.Title = "Incasso Totale";
 }
 
 <h2>Incasso Totale</h2>
-<p>L'incasso totale per oggi è: @Model.ToString("C")</p>
+@if (Model.HasValue)
+{
+    <p>L'incasso totale per oggi è: @Model.Value.ToString("C")</p>
+}
+else
+{
+    <p>Nessun incasso totale disponibile per oggi.</p>
+}

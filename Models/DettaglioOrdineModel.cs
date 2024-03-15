@@ -7,7 +7,7 @@ namespace EpInForno.Models
 {
     public class DettaglioOrdineModel
     {
-        public string Id { get; set; } 
+        public int Id { get; set; } 
         public int UtenteModelId { get; set; }
         public int ArticoloModelId { get; set; }
         public string ArticoloModelNome { get; set; }

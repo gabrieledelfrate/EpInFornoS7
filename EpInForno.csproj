@@ -204,6 +204,10 @@
     <Compile Include="Migrations\202403151631098_changes2.Designer.cs">
       <DependentUpon>202403151631098_changes2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403151713060_finalchanges2.cs" />
+    <Compile Include="Migrations\202403151713060_finalchanges2.Designer.cs">
+      <DependentUpon>202403151713060_finalchanges2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AmministratoreModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -334,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403151631098_changes2.resx">
       <DependentUpon>202403151631098_changes2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403151713060_finalchanges2.resx">
+      <DependentUpon>202403151713060_finalchanges2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
