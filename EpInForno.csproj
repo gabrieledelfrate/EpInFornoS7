@@ -51,6 +51,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -197,6 +200,10 @@
     <Compile Include="Migrations\202403151527081_AggiungiPrezzoTotaleOrdine.Designer.cs">
       <DependentUpon>202403151527081_AggiungiPrezzoTotaleOrdine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403151631098_changes2.cs" />
+    <Compile Include="Migrations\202403151631098_changes2.Designer.cs">
+      <DependentUpon>202403151631098_changes2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AmministratoreModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -278,6 +285,9 @@
     <Content Include="Views\Registrazione\Registrazione.cshtml" />
     <Content Include="Views\Amministratore\Login.cshtml" />
     <Content Include="Views\Carrello\Index.cshtml" />
+    <Content Include="Views\Amministratore\ListaOrdini.cshtml" />
+    <Content Include="Views\Amministratore\OrdiniEvasi.cshtml" />
+    <Content Include="Views\Amministratore\IncassoTotale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -321,6 +331,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403151527081_AggiungiPrezzoTotaleOrdine.resx">
       <DependentUpon>202403151527081_AggiungiPrezzoTotaleOrdine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403151631098_changes2.resx">
+      <DependentUpon>202403151631098_changes2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

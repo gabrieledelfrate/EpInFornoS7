@@ -54,5 +54,39 @@ namespace EpInForno.Controllers
 
             return View(model);
         }
+        [Authorize]
+        [HttpPost]
+        public ActionResult ModificaStatoOrdine(int id, string statoOrdine)
+        {
+            var ordine = dbContext.Ordini.FirstOrDefault(o => o.Id == id);
+            if (ordine != null)
+            {
+                ordine.StatoOrdine = statoOrdine;
+                dbContext.SaveChanges();
+                return RedirectToAction("ListaOrdini");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Ordine non trovato.");
+                return View("Error");
+            }
+        }
+
+        public ActionResult OrdiniEvasi()
+        {
+            var ordiniEvasi = dbContext.Ordini.Where(o => o.StatoOrdine == "evaso").ToList();
+            return View(ordiniEvasi);
+        }
+
+        public ActionResult IncassoTotale()
+        {
+            DateTime oggi = DateTime.Today;
+
+            decimal sommaPrezzoTotale = dbContext.Ordini
+                .Where(o => o.DettaglioOrdineDataOrdine.Date == oggi)
+                .Sum(o => o.DettaglioOrdinePrezzoTotale);
+
+            return View(sommaPrezzoTotale);
+        }
     }
 }

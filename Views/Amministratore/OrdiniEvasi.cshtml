@@ -1,0 +1,41 @@
+﻿@model IEnumerable<EpInForno.Models.OrdineModel>
+
+@{
+    ViewBag.Title = "Ordini Evasi";
+}
+
+@if (Model != null && Model.Any())
+{
+    <h2>Ordini Evasi</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id Ordine</th>
+                <th>Dettaglio Ordine Id</th>
+                <th>Articolo Model Id</th>
+                <th>Stato Ordine</th>
+                <th>Quantità</th>
+                <th>Data Ordine</th>
+                <th>Prezzo Totale</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ordine in Model)
+            {
+                <tr>
+                    <td>@ordine.Id</td>
+                    <td>@ordine.DettaglioOrdineId</td>
+                    <td>@ordine.ArticoloModelId</td>
+                    <td>@ordine.StatoOrdine</td>
+                    <td>@ordine.Quantita</td>
+                    <td>@ordine.DettaglioOrdineDataOrdine</td>
+                    <td>@ordine.DettaglioOrdinePrezzoTotale</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nessun ordine evaso trovato.</p>
+}

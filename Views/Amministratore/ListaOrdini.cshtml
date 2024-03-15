@@ -1,0 +1,33 @@
+﻿@model IEnumerable<EpInForno.Models.OrdineModel>
+
+@{
+    ViewBag.Title = "Lista Ordini";
+}
+
+<h2>Lista Ordini</h2>
+
+<div class="row">
+    @foreach (var ordine in Model)
+    {
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Ordine ID: @ordine.Id</h5>
+                    <p class="card-text">Dettaglio Ordine ID: @ordine.DettaglioOrdineId</p>
+                    <p class="card-text">Articolo ID: @ordine.ArticoloModelId</p>
+                    <p class="card-text">Quantità: @ordine.Quantita</p>
+                    <p class="card-text">Data Ordine: @ordine.DettaglioOrdineDataOrdine.ToShortDateString()</p>
+                    <p class="card-text">Prezzo Totale: @ordine.DettaglioOrdinePrezzoTotale.ToString("C")</p>
+                    <form method="post" action="@Url.Action("ModificaStatoOrdine", "Amministratore")">
+                        @Html.Hidden("id", ordine.Id)
+                        <div class="form-group">
+                            <label for="statoOrdine">Stato Ordine:</label>
+                            <input type="text" id="statoOrdine" name="statoOrdine" value="@ordine.StatoOrdine" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>

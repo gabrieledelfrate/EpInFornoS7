@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EpInForno.Models;
+using Microsoft.AspNet.Identity;
 
 namespace EpInForno.Controllers
 {
@@ -22,7 +23,6 @@ namespace EpInForno.Controllers
             ViewBag.IndirizzoUtente = GetIndirizzoUtenteLoggato();
             return View(dettaglioOrdine);
         }
-
 
         [HttpPost]
         public ActionResult AggiungiAlCarrello(int id, int quantita)
@@ -50,7 +50,7 @@ namespace EpInForno.Controllers
         }
 
         [HttpPost]
-        public ActionResult AggiornaQuantita(int id, int quantita)
+        public ActionResult AggiornaQuantita(string id, int quantita)
         {
             List<DettaglioOrdineModel> carrello = Session["Carrello"] as List<DettaglioOrdineModel>;
             if (carrello != null)
@@ -74,7 +74,7 @@ namespace EpInForno.Controllers
             var utente = dbContext.Utenti.FirstOrDefault(u => u.Email == userEmail);
             if (utente != null)
             {
-                return utente.Indirizzo; 
+                return utente.Indirizzo;
             }
             return string.Empty;
         }
@@ -82,7 +82,7 @@ namespace EpInForno.Controllers
         [HttpPost]
         public ActionResult ProcediAllOrdine(string indirizzoSpedizione, string note)
         {
-            string userId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
 
             List<DettaglioOrdineModel> carrello = Session["Carrello"] as List<DettaglioOrdineModel>;
 
@@ -90,11 +90,11 @@ namespace EpInForno.Controllers
 
             OrdineModel nuovoOrdine = new OrdineModel
             {
-                DettaglioOrdineId = 0, 
-                StatoOrdine = "In attesa di elaborazione", 
-                Quantita = carrello.Sum(item => item.Quantita), 
+                DettaglioOrdineId = 0,
+                StatoOrdine = "In attesa di elaborazione",
+                Quantita = carrello.Sum(item => item.Quantita),
                 DettaglioOrdineDataOrdine = DateTime.Now,
-                DettaglioOrdinePrezzoTotale = prezzoTotaleOrdine 
+                DettaglioOrdinePrezzoTotale = prezzoTotaleOrdine
             };
 
             dbContext.Ordini.Add(nuovoOrdine);
@@ -104,11 +104,11 @@ namespace EpInForno.Controllers
 
             foreach (var dettaglio in carrello)
             {
-                dettaglio.UtenteModelId = userId;
+                dettaglio.UtenteModelId = int.Parse(userId);
+
 
                 dettaglio.Id = Guid.NewGuid().ToString();
 
-               
                 dettaglio.DettaglioOrdineId = nuovoOrdineId;
 
                 dettaglio.DataOrdine = DateTime.Now;
@@ -121,18 +121,13 @@ namespace EpInForno.Controllers
 
             Session["Carrello"] = null;
 
-           
             dbContext.SaveChanges();
 
-           
             return RedirectToAction("Index", "Home");
         }
 
-
-
-
         [HttpPost]
-        public ActionResult RimuoviDalCarrello(int id)
+        public ActionResult RimuoviDalCarrello(string id)
         {
             List<DettaglioOrdineModel> carrello = Session["Carrello"] as List<DettaglioOrdineModel>;
             if (carrello != null)
