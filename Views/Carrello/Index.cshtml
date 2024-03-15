@@ -1,0 +1,73 @@
+﻿@model IEnumerable<EpInForno.Models.DettaglioOrdineModel>
+
+@{
+    ViewBag.Title = "Carrello";
+}
+
+<div class="container">
+    <h2>Carrello</h2>
+    @if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="@item.ArticoloModelFoto" class="card-img" alt="@item.ArticoloModelNome">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.ArticoloModelNome</h5>
+                                    <p class="card-text">Prezzo: €@item.ArticoloModelPrezzo</p>
+                                    <form action="@Url.Action("AggiornaQuantita", "Carrello")" method="post">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <input type="number" name="quantita" value="@item.Quantita" min="1" max="10" />
+                                        <button type="submit" class="btn btn-primary">Aggiorna Quantità</button>
+                                    </form>
+                                    <p class="card-text">Prezzo Totale: €@item.PrezzoTotale</p>
+                                    <form action="@Url.Action("RimuoviDalCarrello", "Carrello")" method="post">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <button type="submit" class="btn btn-danger">Rimuovi dal Carrello</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+<<form action="@Url.Action("ProcediAllOrdine", "Carrello")" method="post">
+        <div class="form-group">
+            <label for="indirizzoSpedizione">Indirizzo di spedizione</label>
+            <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" class="form-control" value="@ViewBag.IndirizzoUtente" placeholder="Indirizzo di spedizione" required>
+        </div>
+        <div class="form-group">
+            <label for="note">Note</label>
+            <textarea id="note" name="note" class="form-control" placeholder="Inserisci eventuali note"></textarea>
+        </div>       
+    </form>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Totale: €@Model.Sum(item => item.PrezzoTotale)</h5>
+                        <form action="@Url.Action("SvuotaCarrello", "Carrello")" method="post">
+                            <button type="submit" class="btn btn-danger">Svuota Carrello</button>
+                        </form>
+                        <form action="@Url.Action("ProcediAllOrdine", "Carrello")" method="post">
+                            <button type="submit" class="btn btn-success">Procedi all'Ordine</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p>Il carrello è vuoto.</p>
+    }
+</div>

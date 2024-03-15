@@ -29,10 +29,11 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Indirizzo)
+        @Html.LabelFor(m => m.Indirizzo, "Indirizzo completo di città", new { @class = "control-label" })
         @Html.TextBoxFor(m => m.Indirizzo, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Indirizzo, "", new { @class = "text-danger" })
     </div>
+
 
     <div class="form-group">
         @Html.LabelFor(m => m.Citta)

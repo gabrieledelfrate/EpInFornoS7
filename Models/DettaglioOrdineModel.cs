@@ -18,7 +18,7 @@ namespace EpInForno.Models
         public DateTime DataOrdine { get; set; }
         public string IndirizzoSpedizione { get; set; }
         public string Note { get; set; }
+        public decimal PrezzoTotaleOrdine { get; set; } // Aggiunto il campo per il prezzo totale dell'ordine
         public ICollection<DettaglioOrdineModel> DettagliOrdineModel { get; set; }
-
     }
 }

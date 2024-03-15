@@ -8,7 +8,7 @@ namespace EpInForno.Models
     public class OrdineModel
     {
         public int Id { get; set; }
-        public int OrdineId { get; set; }
+        public int DettaglioOrdineId { get; set; }
         public int ArticoloModelId { get; set; }
         public string StatoOrdine { get; set; }
         public int Quantita { get; set; }

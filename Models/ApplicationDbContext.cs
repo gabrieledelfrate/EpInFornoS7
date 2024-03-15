@@ -13,7 +13,7 @@ namespace EpInForno.Models
             // Costruttore 
         }
 
-        public DbSet<ArticoloModel> Pizze { get; set; }
+        public DbSet<ArticoloModel> Articoli { get; set; }
         public DbSet<UtenteModel> Utenti { get; set; }
         public DbSet<OrdineModel> Ordini { get; set; }
         public DbSet<DettaglioOrdineModel> DettagliOrdini { get; set; }
